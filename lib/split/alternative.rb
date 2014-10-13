@@ -51,7 +51,7 @@ module Split
 
     def completed_count(goal = nil)
       field = set_field(goal)
-      Split.redis.hget(key, field).to_i
+      [Split.redis.hget(key, field).to_i, participant_count].min
     end
 
     def all_completed_count
